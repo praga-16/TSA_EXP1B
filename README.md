@@ -24,67 +24,64 @@ import matplotlib.pyplot as plt
 
 ### Loading the dataset:
 ```
-data=pd.read_csv('/content/international-airline-passengers.csv')
+data=pd.read_csv('Gold Price Prediction.csv')
 ```
+### Convert 'Date' column to datetime format
+```
+data['Date'] = pd.to_datetime(data['Date'])
+```
+### Set 'Date' as the index
+```
+data.set_index('Date', inplace=True)
+```
+### Create a figure and set of subplots
+```
+plt.figure(figsize=(12, 10))
+```
+### Plot 1: Gold Price Today
+```
+plt.subplot(3, 1, 1)  # 3 rows, 1 column, 1st subplot
+plt.plot(data.index, data['Price Today'], label='Gold Price Today', color='blue')
+plt.title('Gold Price Today Over Time')
+plt.xlabel('Date')
+plt.ylabel('Gold Price')
+plt.legend()
+plt.grid(True)
+```
+### Plot 2: Twenty Moving Average vs. Fifty Moving Average
+```
+plt.subplot(3, 1, 2)  # 3 rows, 1 column, 2nd subplot
+plt.plot(data.index, data['Twenty Moving Average'], label='20-Day Moving Average', color='orange')
+plt.plot(data.index, data['Fifty Day Moving Average'], label='50-Day Moving Average', color='green')
+plt.title('20-Day vs 50-Day Moving Averages')
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.legend()
+plt.grid(True)
+```
+### Plot 3: Volume Over Time
+```
+plt.subplot(3, 1, 3)  # 3 rows, 1 column, 3rd subplot
+plt.bar(data.index, data['Volume '], label='Trading Volume ', color='purple')
+plt.title('Trading Volume Over Time')
+plt.xlabel('Date')
+plt.ylabel('Volume ')
+plt.legend()
+plt.grid(True)
+```
+### Adjust layout and show the plots
+```
+plt.tight_layout()
+plt.show()
 
-### Plot the data without Conversion:
-```
-x=data['Month']
-y=data['International airline passengers: monthly totals in thousands. Jan 49 ? Dec 60']
-plt.xlabel('Month')
-plt.ylabel('International airline passengers: monthly totals in thousands.')
-plt.plot(x,y)
-```
-
-### REGULAR DIFFERENCING
-```
-data3=data
-data3['diff']=data3['International airline passengers: monthly totals in thousands. Jan 49 ? Dec 60'].diff(periods=1)
-data3=data3.dropna()
-x=data3['Month']
-y=data3['diff']
-plt.xlabel('Month')
-plt.ylabel('International airline passengers: monthly totals in thousands.')
-plt.plot(x,y)
-```
-
-### SEASONAL ADJUSTMENT
-```
-data1=data
-data1['SeasonalAdjustment'] = data1['International airline passengers: monthly totals in thousands. Jan 49 ? Dec 60'] - data1['International airline passengers: monthly totals in thousands. Jan 49 ? Dec 60'].shift(12)
-data1['SeasonalAdjustment'].dropna()
-x=data1['Month']
-y=data1["SeasonalAdjustment"]
-plt.xlabel('Month')
-plt.ylabel('International airline passengers: monthly totals in thousands.')
-plt.plot(x,y)
-```
-
-### LOG TRANSFORMATION
-```
-data2=data
-data2['log']=np.log(data2['diff']).dropna()
-data2=data2.dropna()
-x=data2['Month']
-y=data2['log']
-plt.xlabel('Month')
-plt.ylabel('International airline passengers: monthly totals in thousands.')
-# plt.figure(figsize=(8, 6)) 
-plt.plot(x,y)
 ```
 
 ## OUTPUT:
-### WITHOUT CONVERSION:
-![t1](https://github.com/Ishu-Vasanth/TSA_EXP1B/assets/94154614/c6110233-a143-44fc-8055-73256231bdb1)
+### rading Volume Over Time:
+### Twenty Moving Average vs. Fifty Moving Average
+### Gold Price Today
+![image](https://github.com/user-attachments/assets/ad565961-68df-4adc-b867-874e6b7166a0)
 
-### REGULAR DIFFERENCING:
-![t2](https://github.com/Ishu-Vasanth/TSA_EXP1B/assets/94154614/f13bc5b1-f547-4a2e-b52e-53bee0ba4166)
-
-### SEASONAL ADJUSTMENT:
-![t3](https://github.com/Ishu-Vasanth/TSA_EXP1B/assets/94154614/9e15eef9-4278-486b-9fa6-766b373ecc73)
-
-### LOG TRANSFORMATION:
-![t4](https://github.com/Ishu-Vasanth/TSA_EXP1B/assets/94154614/75a84c2a-e8d5-4e98-b88e-26e6da9d5d9d)
 
 
 ### RESULT:
