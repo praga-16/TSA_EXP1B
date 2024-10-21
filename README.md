@@ -1,7 +1,7 @@
 # Ex.No: 1 B                    CONVERSION OF NON STATIONARY TO STATIONARY DATA
 
 ## AIM:
-To perform regular differncing,seasonal adjustment and log transformatio on international airline passenger data
+To perform regular differncing,seasonal adjustment and log transformatio on Gold Price Prediction.
 
 ## ALGORITHM:
 1. Import the required packages like pandas and numpy
@@ -85,5 +85,5 @@ plt.show()
 
 
 ### RESULT:
-Thus we have created the python code for the conversion of non stationary to stationary data on international airline passenger
+Thus we have created the python code for the conversion of non stationary to stationary data on Gold Price Prediction
 data.
